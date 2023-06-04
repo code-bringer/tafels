@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="nl">
     <head>
-        <link rel="icon" type="image/png" href="/favicon.png"/>
+        <link rel="icon" type="image/png" href="./favicon.png"/>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="utf-8">
         <title>Tafels!</title>
@@ -95,6 +95,12 @@
                     $("#test-answer").focus();
                 });
 
+                $("#test-answer").on("keypress", function (evt) {
+                    if (evt.which < 48 || evt.which > 57) {
+                        evt.preventDefault();
+                    }
+                });
+
                 $("#test-submit").click(function(event) {
                     let answer = parseInt($("#test-answer").val());
                     if (answer !== currentTest.answer) {
@@ -172,7 +178,7 @@
                     <h1>Som</h1>
                     <form class="text">
                         <span id="test-container">
-                            <span id="test-first" class="test-text"></span><span class="test-text">x</span><span id="test-second" class="test-text"></span><span class="test-text">=</span><input id="test-answer" class="text" maxlength="3" title="Antwoord" required>
+                            <span id="test-first" class="test-text"></span><span class="test-text">x</span><span id="test-second" class="test-text"></span><span class="test-text">=</span><input id="test-answer" class="text" maxlength="3" title="Antwoord" type="text" required pattern="^[0-9]+$"/>
                             <button id="test-submit" type="submit" class="text">Antwoord</button>
                         </span>
                     </form>
