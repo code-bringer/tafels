@@ -96,7 +96,16 @@
                 });
 
                 $("#test-answer").on("keypress", function (evt) {
-                    if (evt.which < 48 || evt.which > 57) {
+                    const isDigit = evt.which >= 48 && evt.which <= 57;
+                    const isEnter = evt.which === 13;
+                    const isArrow = evt.which === 37 || evt.which === 39;
+                    const isTab = evt.which === 9;
+                    const isBackspace = evt.which === 8;
+                    const isDelete = evt.which === 8;
+                    
+                    const isAllowed = isDigit || isEnter || isArrow ||
+                                        isTab || isBackspace || isDelete;
+                    if (!isAllowed) {
                         evt.preventDefault();
                     }
                 });
